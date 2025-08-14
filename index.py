@@ -1,7 +1,56 @@
+"""
+Calculadora Interactiva en Python
+
+Este módulo proporciona una calculadora interactiva que permite realizar operaciones
+matemáticas básicas en un bucle continuo hasta que el usuario decida salir.
+
+Operaciones disponibles:
+- Suma (+)
+- Resta (-)
+- Multiplicación (*)
+- División (/)
+- Potencia (**)
+
+Autor: Desarrollador Python RazorZ7X
+Versión: 1.0
+"""
+
 def calculadora():
     """
-    Calculadora que permite realizar operaciones básicas
-    y se mantiene en bucle hasta que el usuario escriba 'salir'
+    Calculadora interactiva que permite realizar operaciones matemáticas básicas.
+    
+    Esta función implementa un bucle infinito que:
+    1. Solicita al usuario la operación a realizar
+    2. Valida que la operación sea válida
+    3. Solicita dos números para la operación
+    4. Ejecuta la operación y muestra el resultado
+    5. Continúa hasta que el usuario escriba 'salir'
+    
+    Operaciones soportadas:
+        + : Suma de dos números
+        - : Resta de dos números
+        * : Multiplicación de dos números
+        / : División de dos números (con validación de división por cero)
+        ** : Potencia (primer número elevado al segundo)
+    
+    Manejo de errores:
+        - Valida que la operación sea válida
+        - Previene división por cero
+        - Maneja entradas no numéricas
+        - Captura errores inesperados
+    
+    Ejemplo de uso:
+        >>> calculadora()
+        === CALCULADORA PYTHON ===
+        Operaciones disponibles: +, -, *, /, ** (potencia)
+        Escribe 'salir' como operación para terminar
+        ----------------------------------------
+        
+        ¿Qué operación quieres realizar? (+, -, *, /, **, salir): +
+        Ingresa el primer número: 10
+        Ingresa el segundo número: 5
+        
+        📊 RESULTADO: 10.0 + 5.0 = 15.0
     """
     print("=== CALCULADORA PYTHON ===")
     print("Operaciones disponibles: +, -, *, /, ** (potencia)")

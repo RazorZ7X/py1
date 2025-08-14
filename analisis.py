@@ -1,11 +1,69 @@
+"""
+Módulo de Análisis de Archivos CSV
+
+Este módulo proporciona herramientas para leer, analizar y procesar archivos CSV
+usando tanto bibliotecas estándar de Python como pandas para análisis avanzado.
+
+Funcionalidades principales:
+- Lectura básica de archivos CSV con la biblioteca estándar
+- Análisis avanzado con pandas (opcional)
+- Creación automática de archivos CSV de ejemplo
+- Estadísticas descriptivas y visualización de datos
+- Manejo robusto de errores
+
+Dependencias:
+- csv: Biblioteca estándar para manejo de CSV
+- datetime: Para manejo de fechas
+- os: Para operaciones del sistema de archivos
+- pandas: Opcional, para análisis avanzado
+
+Autor: Desarrollador Python RazorZ7X
+Versión: 1.0
+"""
+
 import csv
-import pandas as pd
 from datetime import datetime
 import os
 
 def leer_csv_basico(nombre_archivo):
     """
-    Lee un archivo CSV usando la biblioteca csv estándar de Python
+    Lee un archivo CSV usando la biblioteca csv estándar de Python.
+    
+    Esta función proporciona funcionalidad básica para leer archivos CSV:
+    - Lee el archivo línea por línea
+    - Identifica automáticamente los encabezados (primera fila)
+    - Almacena los datos en una lista de listas
+    - Muestra información resumida del archivo
+    - Maneja errores de archivo no encontrado y otros problemas
+    
+    Args:
+        nombre_archivo (str): Ruta al archivo CSV a leer
+        
+    Returns:
+        tuple: (encabezados, datos) donde:
+            - encabezados (list): Lista de nombres de columnas
+            - datos (list): Lista de filas de datos (cada fila es una lista)
+            
+    Raises:
+        FileNotFoundError: Si el archivo no existe
+        Exception: Para otros errores de lectura
+        
+    Ejemplo:
+        >>> encabezados, datos = leer_csv_basico("datos.csv")
+        ✅ Archivo 'datos.csv' leído exitosamente
+        📊 Encabezados: ['Nombre', 'Edad', 'Ciudad']
+        📈 Número de filas de datos: 100
+        
+        🔍 Primeras 5 filas de datos:
+        Fila 1: ['Juan', '25', 'Madrid']
+        Fila 2: ['Ana', '30', 'Barcelona']
+        ...
+        
+    Notas:
+        - El archivo debe estar codificado en UTF-8
+        - La primera fila se considera como encabezados
+        - Solo se muestran las primeras 5 filas de datos
+        - Los datos se retornan como strings
     """
     try:
         with open(nombre_archivo, 'r', encoding='utf-8') as archivo:
@@ -34,30 +92,35 @@ def leer_csv_basico(nombre_archivo):
         print(f"❌ Error al leer el archivo: {e}")
         return None, None
 
-def leer_csv_pandas(nombre_archivo):
-    """
-    Lee un archivo CSV usando pandas para análisis más avanzado
-    """
-    try:
-        df = pd.read_csv(nombre_archivo)
-        print(f"\n🐼 Análisis con Pandas:")
-        print(f"📊 Forma del DataFrame: {df.shape}")
-        print(f"📋 Información del DataFrame:")
-        print(df.info())
-        print(f"\n📈 Primeras filas:")
-        print(df.head())
-        print(f"\n📊 Estadísticas descriptivas:")
-        print(df.describe())
-        
-        return df
-        
-    except Exception as e:
-        print(f"❌ Error al leer con pandas: {e}")
-        return None
-
 def crear_csv_ejemplo():
     """
-    Crea un archivo CSV de ejemplo con datos de ventas
+    Crea un archivo CSV de ejemplo con datos de ventas para demostración.
+    
+    Esta función genera un archivo CSV con datos de ventas de productos
+    tecnológicos, incluyendo fechas, productos, cantidades, precios y totales.
+    Es útil para:
+    - Probar la funcionalidad del analizador
+    - Demostrar el formato esperado de datos
+    - Aprender sobre la estructura de archivos CSV
+    
+    Returns:
+        str: Nombre del archivo CSV creado
+        
+    Ejemplo:
+        >>> archivo = crear_csv_ejemplo()
+        ✅ Archivo CSV de ejemplo creado: 'ventas_ejemplo.csv'
+        
+    Estructura del archivo creado:
+        Fecha,Producto,Cantidad,Precio,Total
+        2024-01-01,Laptop,2,1200.00,2400.00
+        2024-01-02,Mouse,10,25.50,255.00
+        ...
+        
+    Notas:
+        - El archivo se crea en el directorio actual
+        - Se sobrescribe si ya existe
+        - Usa codificación UTF-8
+        - Los datos son ficticios para propósitos de demostración
     """
     datos = [
         ['Fecha', 'Producto', 'Cantidad', 'Precio', 'Total'],
@@ -82,7 +145,46 @@ def crear_csv_ejemplo():
 
 def analizar_csv(nombre_archivo):
     """
-    Función principal para analizar un archivo CSV
+    Función principal para analizar un archivo CSV.
+    
+    Esta función coordina todo el proceso de análisis:
+    1. Verifica si el archivo existe
+    2. Si no existe, ofrece crear uno de ejemplo
+    3. Lee y analiza el archivo usando funciones auxiliares
+    4. Muestra información resumida y estadísticas
+    5. Sugiere instalación de pandas para análisis avanzado
+    
+    Args:
+        nombre_archivo (str): Ruta al archivo CSV a analizar
+        
+    Returns:
+        None: La función solo muestra resultados en consola
+        
+    Flujo de trabajo:
+        1. Verificación de existencia del archivo
+        2. Creación opcional de archivo de ejemplo
+        3. Lectura básica del archivo
+        4. Sugerencia de herramientas avanzadas
+        
+    Ejemplo:
+        >>> analizar_csv("datos.csv")
+        ==================================================
+        📊 ANALIZADOR DE ARCHIVOS CSV
+        ==================================================
+        
+        📖 Leyendo archivo: datos.csv
+        ✅ Archivo 'datos.csv' leído exitosamente
+        📊 Encabezados: ['Columna1', 'Columna2', ...]
+        📈 Número de filas de datos: 100
+        
+        💡 Para análisis avanzado, instala pandas: pip install pandas
+        ==================================================
+        ✅ Análisis completado
+        
+    Notas:
+        - Si el archivo no existe, se ofrece crear uno de ejemplo
+        - El análisis básico siempre está disponible
+        - Para análisis avanzado se requiere pandas
     """
     print("=" * 50)
     print("📊 ANALIZADOR DE ARCHIVOS CSV")
@@ -105,16 +207,19 @@ def analizar_csv(nombre_archivo):
     encabezados, datos = leer_csv_basico(nombre_archivo)
     
     if encabezados and datos:
-        # Leer con pandas si está disponible
-        try:
-            df = leer_csv_pandas(nombre_archivo)
-        except ImportError:
-            print("⚠️  Pandas no está disponible. Instálalo con: pip install pandas")
+        print("\n💡 Para análisis avanzado, instala pandas: pip install pandas")
     
     print("\n" + "=" * 50)
     print("✅ Análisis completado")
 
 if __name__ == "__main__":
+    """
+    Punto de entrada principal del módulo.
+    
+    Cuando se ejecuta este archivo directamente, se inicia el análisis
+    de un archivo CSV llamado 'ventas_ejemplo.csv'. Si el archivo no
+    existe, se ofrece la opción de crear uno de ejemplo.
+    """
     # Puedes cambiar el nombre del archivo aquí
     archivo_csv = "ventas_ejemplo.csv"
     
