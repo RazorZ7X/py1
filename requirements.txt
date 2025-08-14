@@ -1,0 +1,21 @@
+# Dependencias del Proyecto Python - Herramientas de Programación
+# Archivo generado con: pip freeze
+# Fecha: 2024
+
+# Dependencias principales
+pandas==2.3.1
+
+# Dependencias de pandas
+numpy==2.3.2
+python-dateutil==2.9.0.post0
+pytz==2025.2
+six==1.17.0
+tzdata==2025.2
+
+# Notas:
+# - pandas: Opcional, para análisis avanzado de CSV
+# - numpy: Requerido por pandas para operaciones numéricas
+# - python-dateutil: Utilidades de fecha para pandas
+# - pytz: Manejo de zonas horarias
+# - six: Compatibilidad Python 2/3
+# - tzdata: Base de datos de zonas horarias

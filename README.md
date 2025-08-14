@@ -34,7 +34,8 @@ Este proyecto contiene varios módulos y scripts de Python diseñados para difer
 
 - **Python 3.11+** (probado con Python 3.11.2544.0)
 - **Bibliotecas estándar**: `csv`, `datetime`, `os`
-- **Opcional**: `pandas` para análisis avanzado de CSV
+- **Dependencias opcionales**: Ver `requirements.txt` para análisis avanzado
+- **Entorno virtual**: Recomendado para gestionar dependencias
 
 ## 🛠️ Instalación
 
@@ -56,11 +57,38 @@ python -m venv .venv
 source .venv/bin/activate
 ```
 
-### 3. Instalar dependencias opcionales
+### 3. Instalar dependencias
 ```bash
-# Instalar pandas para análisis avanzado de CSV
+# Opción 1: Instalar desde requirements.txt (recomendado)
+pip install -r requirements.txt
+
+# Opción 2: Instalar pandas manualmente
 pip install pandas
 ```
+
+## 📦 Gestión de Dependencias
+
+### Archivo requirements.txt
+El proyecto incluye un archivo `requirements.txt` con todas las dependencias necesarias:
+
+```bash
+# Ver dependencias instaladas
+pip freeze
+
+# Instalar todas las dependencias
+pip install -r requirements.txt
+
+# Actualizar requirements.txt
+pip freeze > requirements.txt
+```
+
+### Dependencias incluidas:
+- **pandas==2.3.1** - Análisis avanzado de datos CSV
+- **numpy==2.3.2** - Operaciones numéricas
+- **python-dateutil==2.9.0.post0** - Utilidades de fecha
+- **pytz==2025.2** - Manejo de zonas horarias
+- **six==1.17.0** - Compatibilidad Python
+- **tzdata==2025.2** - Base de datos de zonas horarias
 
 ## 🎯 Uso
 
@@ -99,6 +127,7 @@ resultados = fizzbuzz_lista(20)
 ```
 py1/
 ├── README.md           # Este archivo
+├── requirements.txt    # Dependencias del proyecto
 ├── index.py            # Calculadora interactiva
 ├── analisis.py         # Analizador de archivos CSV
 ├── fizzbuzz.py         # Implementación de FizzBuzz
